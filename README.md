@@ -17,14 +17,16 @@ Includes smart contract and frontend interface
 
 1. Clone this project.
 
-**Blockchain part**  
+**Blockchain part**
+
 2. In the root directory, run `npm install` to install truffle for running blockchain locally.
 3. Run `truffle developer` to initiate blockchain and to start an interactive console.
 4. Deploy the SigFlow contract by typing `migrate` in the Truffle developer console.
 5. For interacting with the deployed SigFlow contract, create a reference to it: `contract = await SigFlow.deployed()`.
 6. Check `num` variable's value: `contract.num()`. Keep this console open for later use.
 
-**Frontend part**  
+**Frontend part**
+
 7. Start a new terminal and go to the `client` folder.
 8. Run `npm install`, and then `npm start` to serve the frontend interface. Open the frontend link in a browser with Metamask extension installed (or any other injected wallet, but Metamask's UI is one of the best for this task).
 9. In the browser, click on **Connect Wallet** button to connect an account of the wallet.
@@ -40,13 +42,15 @@ Includes smart contract and frontend interface
 14. Check `num` again by calling `contract.num()`. `value` and `setter` should be updated now.
 15. Try running `setNum()` with the same parameters. It would throw error because that data is already processed.
 16. Run `setNum()` with different `value`s and different wallet accounts for signing the messages and see the resulting `num`.
-17. **Canceling an order**:
-   1. Import a Truffle account into Metamask wallet, and generate a signature in the frontend using that account.
-   2. With the same account, call `cancelOrder` function:  
-      ```
-      contract.cancelOrder({value: 64, setter: "0x580023c59204edeedfc8696957f0c8627736efcb", validPeriod: 1683136998}, "0xf5114f420316b151d38fc6d0a1e5f65712e114a48f4c8dad801872537aed7d6447b3c6015be5cf2bc221eb2ce5fda1ba3f6aff813af74a2db6d39455927cc2b31c", {from: accounts[1]})
-      ```
-    3. The order is canceled. Try calling `setNum` with the owner account passing the same message parameters and message signature. It should throw an error saying `Order already executed`.  
-       ```
-       contract.setNum({value: 64, setter: "0x580023c59204edeedfc8696957f0c8627736efcb", validPeriod: 1683136998}, "0xf5114f420316b151d38fc6d0a1e5f65712e114a48f4c8dad801872537aed7d6447b3c6015be5cf2bc221eb2ce5fda1ba3f6aff813af74a2db6d39455927cc2b31c", {from: accounts[0]})
-       ```
+
+**Canceling an order**
+
+17. Import a Truffle account into Metamask wallet, and generate a signature in the frontend using that account.
+18. With the same account, call `cancelOrder` function:  
+    ```
+    contract.cancelOrder({value: 64, setter: "0x580023c59204edeedfc8696957f0c8627736efcb", validPeriod: 1683136998}, "0xf5114f420316b151d38fc6d0a1e5f65712e114a48f4c8dad801872537aed7d6447b3c6015be5cf2bc221eb2ce5fda1ba3f6aff813af74a2db6d39455927cc2b31c", {from: accounts[1]})
+    ```
+19. The order is canceled. Try calling `setNum` with the owner account passing the same message parameters and message signature. It should throw an error saying `Order already executed`.  
+    ```
+    contract.setNum({value: 64, setter: "0x580023c59204edeedfc8696957f0c8627736efcb", validPeriod: 1683136998}, "0xf5114f420316b151d38fc6d0a1e5f65712e114a48f4c8dad801872537aed7d6447b3c6015be5cf2bc221eb2ce5fda1ba3f6aff813af74a2db6d39455927cc2b31c", {from: accounts[0]})
+    ```
